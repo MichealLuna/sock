@@ -38,8 +38,16 @@ namespace Luna{
         return ::recv(m_client_sock,buf,len,flags);
     }
 
+    ssize_t TcpServer::recv_oob(char* buf,size_t len){
+        return ::recv(m_client_sock,buf,len,MSG_OOB);
+    }
+
     ssize_t TcpServer::send(const char* buf,size_t len,int flags){
         return ::send(m_client_sock,buf,len,flags);
+    }
+
+    ssize_t TcpServer::send_oob(const char* buf,size_t len){
+        return ::send(m_client_sock,buf,len,MSG_OOB);
     }
 
     void TcpServer::close_client(){

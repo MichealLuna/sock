@@ -8,9 +8,13 @@ class TcpClient{
 public:
     TcpClient(const char* ip="127.0.0.1",u_int16_t port=5555);
 
-    ssize_t send(const char* buf,ssize_t len,int flags = 0);
+    ssize_t send(const char* buf,size_t len,int flags = 0);
 
-    ssize_t recv(char* buf,ssize_t len,int flags = 0);
+    ssize_t send_oob(const char* buf,size_t len);
+
+    ssize_t recv(char* buf,size_t len,int flags = 0);
+
+    ssize_t recv_oob(char* buf,size_t len);
 
     ~TcpClient();
 private:

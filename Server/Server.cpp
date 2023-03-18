@@ -25,11 +25,21 @@ int main(int argc,char** argv){
         {
             std::cout<<"recv: "<<buf<<std::endl;
 
+            //recv oob
+            memset(buf,0,sizeof(buf));
+            server.recv_oob(buf,sizeof(buf));
+            std::cout<<"MSG_OOB: "<<buf<<std::endl;
+
             //send
             memset(buf,0,sizeof(buf));
             sprintf(buf,"This is Luna Server Over!");
             server.send(buf,sizeof(buf));
             std::cout<<"send: "<<buf<<std::endl;
+
+            // //send oob
+            // memset(buf,0,sizeof(buf));
+            // sprintf(buf,"This is emergent msg from server!");
+            // server.send_oob(buf,strlen(buf));
 
             memset(buf,0,sizeof(buf));
         }

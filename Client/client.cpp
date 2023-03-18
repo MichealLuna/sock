@@ -25,12 +25,22 @@ TcpClient::TcpClient(const char* ip,u_short port)
                 <<port<<std::endl;
 }
 
-ssize_t TcpClient::send(const char* buf,ssize_t len,int flags){
+ssize_t TcpClient::send(const char* buf,size_t len,int flags){
    return  ::send(connfd,buf,len,flags);
 }
-ssize_t TcpClient::recv(char* buf,ssize_t len,int flags){
+
+ssize_t TcpClient::send_oob(const char* buf,size_t len){
+    return ::send(connfd,buf,len,MSG_OOB);
+}
+
+ssize_t TcpClient::recv(char* buf,size_t len,int flags){
    return  ::recv(connfd,buf,len,flags );
 }
+
+ssize_t TcpClient::recv_oob(char* buf,size_t len){
+    return ::recv(connfd,buf,len,MSG_OOB);
+}
+
 TcpClient::~TcpClient(){
     close(connfd);
     std::cout<<"Client has closed."<<std::endl;
