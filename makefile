@@ -3,10 +3,11 @@ CFLAGS = -g
 
 all:server client
 
-server:server.cpp
+
+server:./Server/*.cpp
 	$(CXX) $(CFLAGS) -o $@ $^
 
-client:client.cpp
+client:./Client/*.cpp
 	$(CXX) $(CFLAGS) -o $@ $^
 
 clean:
